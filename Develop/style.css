@@ -12,7 +12,7 @@ body {
     align-items: center;
   }
   .textarea{
-    background: lightblue;
+    background: transparent;
     border: none;
     resize: none;
     color: #000000;
@@ -33,6 +33,7 @@ body {
   }
   
   .time-block{
+    background-color: lightblue;
     text-align: center;
     border-radius: 15px;
   }
@@ -41,7 +42,6 @@ body {
     white-space: pre-wrap;
     height: 80px;
     border-top: 1px solid white;
-    margin: 0 auto;
   }
 
   /* .no-gutters {
