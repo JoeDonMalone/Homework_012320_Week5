@@ -29,27 +29,38 @@ $(document).ready(function() {
     //Create the script necessary to dynamically add more rows, via jQuery 3 past, 1 current, 3 future
 
     function hourCheck(hour){
-        var currentHour = moment().format('HH')
-        if (hour == currentHour ){
-            console.log('Current hour: red');
-        } else if(hour>currentHour) {
-            console.log('Future hour: green');
-        } else if(hour<currentHour) {
-            console.log('Past hours: gray');
-        }
-        //compare each hour of day to see which rows are <, =, < current hour
+        var currentHour = moment().format('HH');
+        console.log('Index Hour: ', hour);
+        // $( this ).addClass('present')
+        // if (hour == currentHour ){
+
+
+        //     console.log('Current hour: red');
+        // } else if(hour>currentHour) {
+        //     console.log('Future hour: green');
+        // } else if(hour<currentHour) {
+        //     console.log('Past hours: gray');
+        // }
+    $( ".time-block" ).each(function( index ) {
+        $( this ).text(currentHour)
+        console.log('div row index: ', index)
+        // hourCheck(index)
+        // console.log( index + ": " + $( this ).text() );
+      });
+        // //compare each hour of day to see which rows are <, =, < current hour
         // (All hours less than current hour=Gray)
         // (hour equal to current hour = red)
         // (All hours greater than current hour=Green)
     }
 
-    var hourArr= [];
     for(var i = 0;i<24;i++){
         var currentHour = moment().format('HH')
-        console.log(currentHour);
         hourCheck(i)
-        hourArr.push(i)
     }
+
+
+
+
     // hourArr.forEach(hourCheck())
     // console.log(hourArr)
     // assign colors based off of time (if hour-of-day >past: Gray, if(HOD)==present: red else==future: green, )
