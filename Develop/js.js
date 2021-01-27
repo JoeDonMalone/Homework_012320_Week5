@@ -4,15 +4,16 @@ $(document).ready(function() {
     var currentDate = $("#currentDay")
     // Getting the current hour
     // moment().format('HH')
-    // var currentDate = document.querySelector("#currentDay")
-    currentDate.text(moment().format("dddd, MMMM Do YYYY"))
-    // currentDate.textContent = moment().format("dddd, MMMM Do YYYY")
-    // console.log(currentDate)
-    // = 
+    currentDate.text(moment().format("dddd, MMMM Do YYYY"));
+    var currentHour = moment().format('HH');
+    
     // nineHourViewTime = moment().subtract(9, 'hours').toDate()
     var now = moment().toDate()
     var fourHoursBack = moment().subtract(4, 'hours').toDate()
     var fourHoursForward = moment().add(4, 'hours').toDate()
+//  value to compare remove string from time object
+    var am_pm = moment().format('a');
+    var currentHour = moment().format('HH');
     console.log(fourHoursBack);
     console.log(now);
     console.log(fourHoursForward);
@@ -43,26 +44,24 @@ $(document).ready(function() {
         // (All hours greater than current hour=Green)
     }
 
-    for(var i = 0;i<24;i++){
-        var currentHour = moment().format('HH')
-        // console.log(currentHour)
-        // hourCheck(i)
+    for(var i = currentHour;i<9;i++){
+        hourCheck(i)
     }
 
-    $( ".time-hr" ).each(function( index ) {
-        $( this ).addClass('data-row-id-'+ index);
-        if($(this).attr('class') == 'col-1 time-hr data-row-id-3') {
-            // $( this ).text(currentHour+"PM");
-            $( this ).addClass('present')
-        };
-      });
-
+    $( ".hour" ).each(function( index ) {
+        $(this).attr("id","hour-"+(index+9));
+        $( this ).addClass('data-row-id-'+ index)
+        console.log($( this ).attr('id'));
+    });
+    var fakeHour = 9;
     $( ".task" ).each(function( index ) {
+        $(this).attr("id","hour-id-"+(index+9));
         $( this ).text("Task " + index);
         $( this ).addClass('data-row-id-'+ index);
-        if($(this).attr('class') == 'col-10 task data-row-id-3') {
-            $( this ).addClass('present')}
-        })
+        if($( this ).attr('id')==('hour-id-'+fakeHour)){
+            $( this ).addClass('present')
+        }     
+    })
 
     // hourArr.forEach(hourCheck())
     // console.log(hourArr)
