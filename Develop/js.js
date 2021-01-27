@@ -53,14 +53,18 @@ $(document).ready(function() {
         $( this ).addClass('data-row-id-'+ index)
         console.log($( this ).attr('id'));
     });
-    var fakeHour = 9;
+    var fakeHour = 22;
     $( ".task" ).each(function( index ) {
         $(this).attr("id","hour-id-"+(index+9));
         $( this ).text("Task " + index);
         $( this ).addClass('data-row-id-'+ index);
-        if($( this ).attr('id')==('hour-id-'+fakeHour)){
+        if($( this ).attr('id')==('hour-id-'+currentHour)){
             $( this ).addClass('present')
-        }     
+        } else if((index+9)>currentHour){
+            $( this ).addClass('future')
+        } else {
+            $( this ).addClass('past')
+        }
     })
 
     // hourArr.forEach(hourCheck())
