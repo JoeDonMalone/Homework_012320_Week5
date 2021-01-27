@@ -46,11 +46,12 @@ $(document).ready(function() {
     })
     var triggerText = 0
     $('.task').click(function() {
-        console.log($(this).text())
         $( this ).keypress(function() {
             triggerText++;
-            console.log(triggerText);
+            console.log($(this).val());
         });
+        
+        console.log($(this).text())
     })
 
     $( ".saveBtn" ).each(function( index ) {
