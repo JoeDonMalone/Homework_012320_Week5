@@ -20,12 +20,11 @@ $(document).ready(function() {
     //Create the content layout for the page 
     //Create the script necessary to dynamically add more rows, via jQuery 3 past, 1 current, 3 future
 
-    var taskList;
-
-    if (!JSON.parse(localStorage.getItem(taskList))) {
-        taskList = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+    var taskList = JSON.parse(localStorage.getItem('taskList'));        
+    if (!taskList) {
+        var taskList = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
         localStorage.setItem('taskList', JSON.stringify(taskList));
-    }
+    } 
 
     $( ".hour" ).each(function( index ) {
         $(this).attr("id","hour-"+(index+9));
@@ -34,6 +33,7 @@ $(document).ready(function() {
 
 
     $( ".task" ).each(function( index ) {
+        $(this).text(taskList[index])
         $(this).attr("id","hour-id-"+(index+9));
         $( this ).addClass('data-row-id-'+ index);
         if($( this ).attr('id')==('hour-id-'+currentHour)){
@@ -42,7 +42,7 @@ $(document).ready(function() {
             $( this ).addClass('future')
         } else {
             $( this ).addClass('past')
-        }
+        } 
     })
     
     $('.task').click(function() {
@@ -59,6 +59,8 @@ $(document).ready(function() {
         $(this).attr("id","hour-id-"+(index+9));
         $(this).addClass('data-row-id-'+ index)
     });
+
+
     $('.saveBtn').click(function() {
         var localTask = JSON.parse(localStorage.getItem('taskList'));
         var rowID = $(this).prev().attr('id').split('-');
@@ -66,7 +68,7 @@ $(document).ready(function() {
         var userInput = $(this).prev().text();
         localTask[(hour-9)] = userInput;
         localStorage.setItem('taskList', JSON.stringify(localTask));
-        JSON.parse(localStorage.getItem('taskList'));
+        finalData = JSON.parse(localStorage.getItem('taskList'));
     });
 
 
