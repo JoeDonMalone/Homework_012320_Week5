@@ -20,15 +20,8 @@ $(document).ready(function() {
     //Create the content layout for the page - Complete
     //Create the script necessary to dynamically add more rows, via jQuery 3 past, 1 current, 3 future
 
-    var taskData = {
-       task_id:'',
-        hour: '', 
-        task: ''
-    }
-    
-
     $( ".hour" ).each(function( index ) {
-        $(this).attr("id","hour-id-"+(index+9));
+        $(this).attr("id","hour-"+(index+9));
         $( this ).addClass('data-row-id-'+ index)
     });
 
@@ -44,27 +37,33 @@ $(document).ready(function() {
             $( this ).addClass('past')
         }
     })
-    var triggerText = 0
+    
     $('.task').click(function() {
+        var triggerText = [];
         $( this ).keypress(function() {
-            triggerText++;
-            console.log($(this).val());
+            triggerText.push($( this ).text());
         });
-        
-        console.log($(this).text())
+        triggerText.join(" ");
+        // console.log($(this).text());
+        console.log()
     })
+
 
     $( ".saveBtn" ).each(function( index ) {
         $(this).attr("id","hour-id-"+(index+9));
-        $( this ).addClass('data-row-id-'+ index)
+        $(this).addClass('data-row-id-'+ index)
     });
 
     $('.saveBtn').click(function() {
+    var taskData = {
+        task_id: $(this).attr('id'),
+        task: '' //siblings??
+     }
      console.log($( this ).attr('id'));
      localStorage.setItem('Task Data', JSON.stringify(taskData))
     });
 
-    
+
 
 
 });
